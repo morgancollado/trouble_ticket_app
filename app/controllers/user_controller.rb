@@ -4,6 +4,11 @@ class UserController < ApplicationController
         erb :'user/login'
     end 
 
+    get "/user/signup" do 
+        erb :'user/signup'
+
+    end 
+
 
 
 end 

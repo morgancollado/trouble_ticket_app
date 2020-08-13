@@ -1,6 +1,10 @@
-<h1>Please log in to access and send tickets<h2>
-<form method="post" action="/login">
-<p>Username:<input type="text" name="username" placeholder="Suplicant20"></p>
-<p>Password:<input type="password" name="password" placeholder="PrayingForAnAnswer"></p>
+<h1>Please log in to access and send tickets</h1>
+<form method="post" action="/user/login">
+<label for="username">Username</label>
+<input type="text" name="username">
+<br>
+<label for="password">Password</label>
+<input type="password" name="password">
 <p><input type="submit" value="To ask is Divine"></p>
 </form>
+<a href="/user/signup">Don't have an account? Signup!</a>
