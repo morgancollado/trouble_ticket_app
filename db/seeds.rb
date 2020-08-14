@@ -1,3 +1,5 @@
-morgan = User.create(username: "witchymorgan", email: "witchy@morgan.com", password: "holyguacamole")
-athena = Admin.create(username: "Athena", email: "athena@universe.com", password: "shewhosees")
-Ticket.create(title: "I have little wisdom", content: "please grant me your wisdom", user: morgan)
+User.create(username: "witchymorgan", email: "witchy@morgan.com", password: "holyguacamole")
+User.create(username: "Athena", email: "athena@universe.com", password: "shewhosees")
+Ticket.create(title: "I have little wisdom", content: "please grant me your wisdom", customer_id: 1, admin_id: 2, resolved?: true, admin_response: "Make your own wisdom")
+User.create(username: "WizardWednesday", email: "wizard@wednesday.com", password: "yerawizard")
+Ticket.create(title: "I need more spells", content: "please grant me your spells", customer_id: 3, admin_id: 2)

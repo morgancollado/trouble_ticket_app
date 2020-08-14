@@ -10,25 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_015456) do
-
-  create_table "admins", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2020_08_14_010938) do
 
   create_table "tickets", force: :cascade do |t|
     t.string "title"
     t.string "content"
-    t.integer "user_id"
+    t.integer "customer_id"
+    t.integer "admin_id"
     t.boolean "resolved?", default: false
+    t.string "admin_response"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "admin_response"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_08_12_015456) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin?", default: false
   end
 
 end

@@ -6,6 +6,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    #register Sinatra::Flash
     set :session_secret, ENV['SESSION_SECRET']
     
   end
@@ -16,14 +17,24 @@ class ApplicationController < Sinatra::Base
 
   helpers do
 
-    def self.current_user(session)
-      User.find(session[:user_id])
+    def current_user(session)
+      @current_user ||=User.find(session[:user_id]) if session[:user_id]
     end 
 
-    def self.is_logged_in?(session)
-      !!session[:user_id]
+    def logged_in?
+      !!current_user
     end 
 
  end 
 
 end
+
+#for get 
+#if current_user.admin? 
+# @tickets = tickets.all 
+#else 
+# @tickets = current_user.tickets
+
+#for  get edit and patch edit  
+# if current_user.admin? || @ticket.user == current_user 
+#erb :'/ticket/:id/edit'
