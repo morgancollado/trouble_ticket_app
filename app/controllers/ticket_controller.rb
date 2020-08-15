@@ -23,7 +23,44 @@ class TicketController < ApplicationController
         else
             erb :'ticket/new'
         end 
+    end 
 
+    get '/tickets/:id/edit' do
+        get_ticket
+        if @ticket.customer == current_user 
+            erb :'ticket/edit'
+        elsif current_user.admin?
+            erb :'ticket/admin_edit'
+            redirect '/tickets'
+        end 
+    end
+
+    patch '/tickets/:id' do 
+        get_ticket
+        if @ticket.customer == current_user || current_user.admin?
+            resolved = params[:resolved?] == "true" ? true : false
+            if @ticket.update(content: params[:content], title: params[:title], resolved?: resolved)
+                redirect '/tickets'
+            else 
+                erb :'ticket/edit'
+            end 
+        else 
+            redirect '/tickets'
+        end 
+    end 
+
+    delete '/tickets/:id' do 
+        get_ticket
+        if @ticket.customer == current_user || current_user.admin?
+            @ticket.delete
+        end 
+        redirect '/tickets'
+    end 
+
+    private
+
+    def get_ticket
+        @ticket = Ticket.find_by_id(params[:id])
     end 
 
 end 
