@@ -3,9 +3,12 @@
 <p><%= @ticket.content %></p>
 <form action="/tickets/<%= @ticket.id %>" method="post">
 <input type="hidden" name="_method" value="patch">
+<input type="text" name="title" value="<%= @ticket.title %>">
+<input type="text" name="content" value="<%= @ticket.content %>">
 <label for="admin_response">Admin Response</label>
 <input type="text" name="admin_response">
 <label for="resolved?">Resolved?</label>
-<input type="checkbox" name="resolved?" <%= @ticket.resolved? ? "checked" : ""%>>
+<input type="hidden" name="resolved?" value="false">
+<input type="checkbox" name="resolved?" value="true" <%= @ticket.resolved? ? "checked" : ""%>>
 <input type="submit" value="Alter">
 </form>

@@ -1,0 +1,8 @@
+<h1>Your Tickets</h1>
+<% @tickets.each do |t|%>
+<ol>
+<li><a href="tickets/<%= t.id %>"><%= t.title %></a></li>
+<% end %>
+</ol>
+<br>
+<a href="/tickets/new">Create a new supplication</a>

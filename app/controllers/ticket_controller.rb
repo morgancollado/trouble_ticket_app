@@ -3,17 +3,17 @@ class TicketController < ApplicationController
     get '/tickets' do
         if logged_in? && current_user.admin?
             @tickets = Ticket.all
-            erb :'/ticket/index'
+            erb :'/tickets/index'
         elsif logged_in?
             @tickets = Ticket.where(customer_id: session[:user_id])
-            erb :'/ticket/index'
+            erb :'/tickets/index'
         else 
             redirect '/login'
         end 
     end 
 
     get '/tickets/new' do
-        erb :'/ticket/new'
+        erb :'/tickets/new'
     end 
 
     post '/tickets' do 
@@ -21,16 +21,27 @@ class TicketController < ApplicationController
         if @ticket.save
             redirect '/tickets'
         else
-            erb :'ticket/new'
+            erb :'tickets/new'
         end 
+    end 
+
+    get '/tickets/:id' do 
+        get_ticket
+        if @ticket.customer == current_user || current_user.admin?
+            erb :'tickets/show'
+        else 
+            redirect "/tickets"
+        end 
+
     end 
 
     get '/tickets/:id/edit' do
         get_ticket
         if @ticket.customer == current_user 
-            erb :'ticket/edit'
+            erb :'tickets/edit'
         elsif current_user.admin?
-            erb :'ticket/admin_edit'
+            erb :'tickets/admin_edit'
+        else
             redirect '/tickets'
         end 
     end
@@ -38,11 +49,15 @@ class TicketController < ApplicationController
     patch '/tickets/:id' do 
         get_ticket
         if @ticket.customer == current_user || current_user.admin?
+            if current_user.admin? 
+                @ticket = current_user.worked_tickets
+            end
             resolved = params[:resolved?] == "true" ? true : false
-            if @ticket.update(content: params[:content], title: params[:title], resolved?: resolved)
+            if @ticket.update(content: params[:content], title: params[:title], resolved?: resolved, admin_response: params[:admin_response])
+                binding.pry
                 redirect '/tickets'
             else 
-                erb :'ticket/edit'
+                erb :'tickets/edit'
             end 
         else 
             redirect '/tickets'

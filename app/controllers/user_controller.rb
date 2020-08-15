@@ -1,7 +1,7 @@
 class UserController < ApplicationController
 
     get "/login" do 
-        erb :'user/login'
+        erb :'users/login'
     end 
 
     post "/login" do
@@ -17,7 +17,7 @@ class UserController < ApplicationController
     end 
 
     get "/signup" do 
-        erb :'user/signup'
+        erb :'users/signup'
     end 
 
     post "/signup" do 
@@ -28,12 +28,8 @@ class UserController < ApplicationController
         @user = User.create(username: params[:username], email: params[:email], password: params[:password])
         session[:user_id] = @user.id
 
-        redirect 'user/home'
+        redirect '/tickets'
         end 
-    end 
-
-    get "/home" do 
-        erb :'user/home'
     end 
 
     get "/logout" do 
