@@ -50,11 +50,12 @@ class TicketController < ApplicationController
         get_ticket
         if @ticket.customer == current_user || current_user.admin?
             if current_user.admin? 
-                @ticket = current_user.worked_tickets
+                current_user.worked_tickets << @ticket
             end
+            #binding.pry
             resolved = params[:resolved?] == "true" ? true : false
             if @ticket.update(content: params[:content], title: params[:title], resolved?: resolved, admin_response: params[:admin_response])
-                binding.pry
+                
                 redirect '/tickets'
             else 
                 erb :'tickets/edit'
