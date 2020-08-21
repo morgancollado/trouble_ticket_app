@@ -1,8 +1,17 @@
 <h1>Submit your problems here</h1>
 <form action="/tickets" method="post">
-<label for="title">Subject</label>
-<input type="text" name="title">
-<label for="content">Content</label>
-<input type="text" name="content">
-<input type="submit" value="Supplicate">
+<div class="form-group">
+    <div class="form-group col-md-6">
+    <label for="title">Subject</label>
+    <input type="text" class="form-control" name="title" placeholder="What is bothering you?">
+    </div>
+  </div>
+<div class="form-group">
+ <div class="form-group col-md-6">
+    <label for="content">Tell us more about what is going on</label>
+    <textarea class="form-control" name="content" rows="3"></textarea>
+ </div>
+</div>
+<button type="submit" class="btn btn-primary">Supplicate</button>
 </form>
+
