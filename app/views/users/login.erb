@@ -1,10 +1,18 @@
-<h1>Please log in to access and send tickets</h1>
-<form method="post" action="/login">
-<label for="username">Username</label>
-<input type="text" name="username">
-<br>
-<label for="password">Password</label>
-<input type="password" name="password">
-<p><input type="submit" value="Login"></p>
+<!doctype html>
+<html lang="en">
+ 
+
+ <body class="text-center">
+    <form class="form-signin" method="post" action="/login">
+  <img class="mb-4" src="images/sunrise.jpg" alt="sunrise over an ocean" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
+  <label for="username" class="sr-only">Username</label>
+  <input type="text" name="username" class="w-25 p-3 "placeholder="Username" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <p><input type="password" name="password" id="inputPassword" class="w-25 p-3" placeholder="Password" required></p>
+  <button class="btn btn-lg btn-primary" type="submit">Log in</button>
+ 
 </form>
-<a href="/user/signup">Don't have an account? Signup!</a>
+
+
+</body>

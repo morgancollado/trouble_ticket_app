@@ -4,5 +4,5 @@ class User < ActiveRecord::Base
     has_secure_password
     has_many :worked_tickets, :class_name => "Ticket", :foreign_key => "admin_id"
     has_many :submitted_tickets, :class_name => "Ticket", :foreign_key => "customer_id"
-    validates_presence_of :username, :email, :password
+    validates_presence_of :username, :email
 end

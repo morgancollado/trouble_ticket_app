@@ -52,7 +52,6 @@ class TicketController < ApplicationController
             if current_user.admin? 
                 current_user.worked_tickets << @ticket
             end
-            #binding.pry
             resolved = params[:resolved?] == "true" ? true : false
             if @ticket.update(content: params[:content], title: params[:title], resolved?: resolved, admin_response: params[:admin_response])
                 

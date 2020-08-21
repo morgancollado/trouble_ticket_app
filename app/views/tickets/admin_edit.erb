@@ -1,6 +1,6 @@
 <h1>Update your query</h1>
-<h2><%= @ticket.title %></h2>
-<p><%= @ticket.content %></p>
+<h2>Subject: <%= @ticket.title %></h2>
+<p>Content: <%= @ticket.content %></p>
 <form action="/tickets/<%= @ticket.id %>" method="post">
 <input type="hidden" name="_method" value="patch">
 <input type="text" name="title" value="<%= @ticket.title %>">

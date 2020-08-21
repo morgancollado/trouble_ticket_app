@@ -11,7 +11,7 @@ class UserController < ApplicationController
           session[:user_id] = @user.id
           redirect '/tickets'
         else 
-            #flash[:error] = "Invalid credentials. Try again!"
+             flash[:error] = "Invalid credentials. Try again!"
             redirect '/login'
         end
     end 
@@ -21,9 +21,9 @@ class UserController < ApplicationController
     end 
 
     post "/signup" do 
-        if params[:username].empty || params[:email].empty? || params[:password].empty?
-           # @error = "All fields must be completed"
-            erb :'/users/signup'
+        if params[:username].empty? || params[:email].empty? || params[:password].empty?
+           flash[:error] = "All fields must be completed"
+            redirect '/signup'
         else 
         @user = User.create(username: params[:username], email: params[:email], password: params[:password])
         session[:user_id] = @user.id
@@ -35,6 +35,22 @@ class UserController < ApplicationController
     get "/logout" do 
         session.clear
         redirect '/'
+    end 
+
+    get '/admin' do
+        if current_user.admin?
+            @users = User.where(admin?: false)
+            erb :'users/admin'
+        else
+            flash[:error] = "You do not have permission to access this page!"
+        end 
+    end 
+
+    patch '/user' do 
+        @user = User.find_by_id(params[:user])
+        @user.update(admin?: true)
+        flash[:success] = "You have successfully created a new Administrator!"
+        redirect '/tickets'
     end 
 
 
