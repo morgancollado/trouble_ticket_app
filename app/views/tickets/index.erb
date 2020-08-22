@@ -8,10 +8,10 @@
 <a href="/tickets/new">Create a new supplication</a> -->
 <h2>Your Tickets</h2>
 
-
+<div class="row row-cols-1 row-cols-md-2">
 <% @tickets.each do |t|%>
 
-<div class="row row-cols-1 row-cols-md-2">
+
   <div class="col mb-4">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
@@ -26,6 +26,8 @@
         </div>
     </div>
  </div>
- </div>
+ 
 <% end%>
+</div>
+
 <a class="btn btn-primary" href="/tickets/new">Create a new supplication</a>
