@@ -2,7 +2,7 @@ class TicketController < ApplicationController
 
     get '/tickets' do
         if logged_in? && current_user.admin?
-            @tickets = Ticket.all
+            @tickets = Ticket.where(resolved?: false)
             erb :'/tickets/index'
         elsif logged_in?
             @tickets = Ticket.where(customer_id: session[:user_id])

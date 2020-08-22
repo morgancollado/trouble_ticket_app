@@ -1,11 +1,17 @@
 <h1>Which User would you like to make into an administrator?</h1>
 
 <form action="/user" method="post">
-<% @users.each do |u|%>
-    <input type="hidden" name="_method" value="patch">
-    <label for="radio"><%= u.username %></label>
-    <input type="radio" name="user" value="<%= u.id %>">
-<% end%>
-<input type="submit" value="Administrize!">
 
+<% @users.each do |u|%>
+<div class="form-check">
+    <input type="hidden" name="_method" value="patch">
+    
+    <input class="form-check-input" type="radio" name="user" value="<%= u.id %>">
+    <label class="form-check-label" for="radio"><%= u.username %></label>
+
+</div>
+<% end%>
+<input type="submit" class="btn btn-primary" value="Administrize!">
 </form>
+
+

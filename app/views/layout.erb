@@ -21,18 +21,35 @@
     <%= flash[type] %>
   </div>
 <% end %>
+  
+  
+</nav>
+
+<div class="container">
+      <div class="header clearfix">
+       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">Supplication App</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+  
+  </nav>
+  <a class="btn btn-outline-primary" href="/">Home</a>
+</div>
+        
+        </header>
 
         <%= yield %>
+   
       
 
 
       <footer class="branding">
+      
         <small>&copy; 2020 <strong>Supplicantion App</strong></small>
         <% if logged_in?%>
-        <p><a href="/logout">Logout</a></p>
+        <p><a class="btn btn-primary" href="/logout">Logout</a></p>
         <% else%>
-             <p><a href="/signup">Signup</a></p>
-        <p><a href="/login">Login</a></p>
+             <p><a class="btn btn-primary" href="/signup">Signup</a></p>
+        <p><a class="btn btn-primary"href="/login">Login</a></p>
         <% end%>
         
       </footer>

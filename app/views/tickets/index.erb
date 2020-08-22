@@ -1,8 +1,31 @@
-<h1>Your Tickets</h1>
+<!--<h1>Your Tickets</h1>
 <% @tickets.each do |t|%>
 <ol>
 <li><a href="tickets/<%= t.id %>"><%= t.title %></a></li>
 <% end %>
 </ol>
 <br>
-<a href="/tickets/new">Create a new supplication</a>
+<a href="/tickets/new">Create a new supplication</a> -->
+<h2>Your Tickets</h2>
+
+
+<% @tickets.each do |t|%>
+
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col mb-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><%= t.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= t.customer.username%></h6>
+            <p class="card-text"><%= t.content %></p>
+            <a href="/tickets/<%= t.id %>" class="btn btn-primary">See more</a>
+            <form action="/tickets/<%= t.id %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" class="btn btn-danger" value="Delete">
+            </form>
+        </div>
+    </div>
+ </div>
+ </div>
+<% end%>
+<a class="btn btn-primary" href="/tickets/new">Create a new supplication</a>
