@@ -12,7 +12,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    if logged_in? 
+      redirect '/tickets'
+    else 
     erb :welcome
+    end 
   end
 
   helpers do
