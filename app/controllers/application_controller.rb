@@ -28,12 +28,4 @@ class ApplicationController < Sinatra::Base
 
 end
 
-#for get 
-#if current_user.admin? 
-# @tickets = tickets.all 
-#else 
-# @tickets = current_user.tickets
 
-#for  get edit and patch edit  
-# if current_user.admin? || @ticket.user == current_user 
-#erb :'/ticket/:id/edit'

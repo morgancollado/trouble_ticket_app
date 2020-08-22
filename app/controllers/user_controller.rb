@@ -57,4 +57,3 @@ class UserController < ApplicationController
 
 end 
 
-# if current_user user.admin?  
